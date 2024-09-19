@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { Moon, Sun, ChevronDown } from 'lucide-react'
 import { Button } from "@/components/ui/button"
@@ -16,7 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { AddUserForm } from './add-user-form'
 
-export default function Dashboard() {
+export function DashboardComponent() {
   const [theme, setTheme] = useState('light')
   const [showAddUserForm, setShowAddUserForm] = useState(false)
 
