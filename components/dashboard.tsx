@@ -15,12 +15,17 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
 } from "@/components/ui/dropdown-menu"
 import { AddUserForm } from './add-user-form'
+import NewAgentForm from './new-agent-form'
 
 export function DashboardComponent() {
   const [theme, setTheme] = useState('light')
   const [showAddUserForm, setShowAddUserForm] = useState(false)
+  const [showNewAgentForm, setShowNewAgentForm] = useState(false)
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
@@ -28,6 +33,12 @@ export function DashboardComponent() {
 
   const handleAddUser = () => {
     setShowAddUserForm(true)
+    setShowNewAgentForm(false)
+  }
+
+  const handleNewAgent = () => {
+    setShowNewAgentForm(true)
+    setShowAddUserForm(false)
   }
 
   return (
@@ -44,11 +55,48 @@ export function DashboardComponent() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
-                <DropdownMenuItem>Create Suppliers</DropdownMenuItem>
-                <DropdownMenuItem>Create Customers</DropdownMenuItem>
-                <DropdownMenuItem>Create Products</DropdownMenuItem>
-                <DropdownMenuItem>Internal Stock</DropdownMenuItem>
-                <DropdownMenuItem>Transport</DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Agent</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem onSelect={handleNewAgent}>New Agent</DropdownMenuItem>
+                    <DropdownMenuItem>Agents List</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Unit</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>New Unit</DropdownMenuItem>
+                    <DropdownMenuItem>Units List</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Party</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>New Party</DropdownMenuItem>
+                    <DropdownMenuItem>Parties List</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Transport</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>New Transport</DropdownMenuItem>
+                    <DropdownMenuItem>Transports List</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>HSN Form</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>New HSN Form</DropdownMenuItem>
+                    <DropdownMenuItem>HSN Form List</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Item</DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>New Item</DropdownMenuItem>
+                    <DropdownMenuItem>Items List</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
               </DropdownMenuContent>
             </DropdownMenu>
             <DropdownMenu>
@@ -117,6 +165,8 @@ export function DashboardComponent() {
       <main className="flex-grow container mx-auto p-4">
         {showAddUserForm ? (
           <AddUserForm onClose={() => setShowAddUserForm(false)} />
+        ) : showNewAgentForm ? (
+          <NewAgentForm />
         ) : (
           <>
             <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
