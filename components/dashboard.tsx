@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+
+import { useEffect, useState } from 'react'
 import { Moon, Sun, ChevronDown } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import {
@@ -21,11 +22,14 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { AddUserForm } from './add-user-form'
 import NewAgentForm from './new-agent-form'
+import NewPartyForm from './new-party-form'
 
-export function DashboardComponent() {
+
+export default function DashboardComponent() {
   const [theme, setTheme] = useState('light')
   const [showAddUserForm, setShowAddUserForm] = useState(false)
   const [showNewAgentForm, setShowNewAgentForm] = useState(false)
+  const [showNewPartyForm, setShowNewPartyForm] = useState(false)
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
@@ -40,6 +44,13 @@ export function DashboardComponent() {
     setShowNewAgentForm(true)
     setShowAddUserForm(false)
   }
+
+  const handleNewParty = () => {
+    setShowNewPartyForm(true)
+    setShowAddUserForm(false)
+    setShowNewAgentForm(false)
+  }
+
 
   return (
     <div className={`min-h-screen flex flex-col ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'}`}>
@@ -72,7 +83,8 @@ export function DashboardComponent() {
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>Party</DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem>New Party</DropdownMenuItem>
+
+                    <DropdownMenuItem onSelect={handleNewParty}>New Party</DropdownMenuItem>
                     <DropdownMenuItem>Parties List</DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -166,8 +178,10 @@ export function DashboardComponent() {
         {showAddUserForm ? (
           <AddUserForm onClose={() => setShowAddUserForm(false)} />
         ) : showNewAgentForm ? (
-          <NewAgentForm />
-        ) : (
+          <NewAgentForm onClose= {() => setShowNewAgentForm(false)} />
+        ) : showNewPartyForm ? (
+          <NewPartyForm />
+        ) :(
           <>
             <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

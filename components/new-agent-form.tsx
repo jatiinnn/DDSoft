@@ -17,14 +17,22 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { CalendarIcon } from "lucide-react"
 import { format } from "date-fns"
 
-export function NewAgentForm() {
+interface AddAgentFormProps {
+  onClose: () => void;
+}
+
+export function NewAgentForm({ onClose }: AddAgentFormProps) {
+
   const [openingDate, setOpeningDate] = useState<Date>()
 
   return (
     <div className="container mx-auto p-6 max-w-4xl">
       <h1 className="text-2xl font-bold mb-6">New Agent</h1>
+      <div className='flex justify-between items-center'>
       <p className="text-sm text-red-500 mb-4">* = Required Information</p>
-      
+      <Button onClick={onClose} variant="outline" >Close</Button>
+
+      </div>
       <div className="bg-gray-100 p-6 rounded-lg">
         <h2 className="text-xl font-semibold mb-4">Information</h2>
         
