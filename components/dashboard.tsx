@@ -25,9 +25,6 @@ import {
 
 export default function DashboardComponent() {
   const [theme, setTheme] = useState('light')
-  const [showAddUserForm, setShowAddUserForm] = useState(false)
-  const [showNewAgentForm, setShowNewAgentForm] = useState(false)
-  const [showNewPartyForm, setShowNewPartyForm] = useState(false)
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light')
