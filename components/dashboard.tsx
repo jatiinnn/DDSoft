@@ -20,9 +20,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
 } from "@/components/ui/dropdown-menu"
-import { AddUserForm } from './add-user-form'
-import NewAgentForm from './new-agent-form'
-import NewPartyForm from './new-party-form'
+
 
 
 export default function DashboardComponent() {
@@ -35,21 +33,6 @@ export default function DashboardComponent() {
     setTheme(theme === 'light' ? 'dark' : 'light')
   }
 
-  const handleAddUser = () => {
-    setShowAddUserForm(true)
-    setShowNewAgentForm(false)
-  }
-
-  const handleNewAgent = () => {
-    setShowNewAgentForm(true)
-    setShowAddUserForm(false)
-  }
-
-  const handleNewParty = () => {
-    setShowNewPartyForm(true)
-    setShowAddUserForm(false)
-    setShowNewAgentForm(false)
-  }
 
 
   return (
@@ -69,7 +52,7 @@ export default function DashboardComponent() {
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>Agent</DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem onSelect={handleNewAgent}>New Agent</DropdownMenuItem>
+                    <DropdownMenuItem>New Agent</DropdownMenuItem>
                     <DropdownMenuItem>Agents List</DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -84,7 +67,7 @@ export default function DashboardComponent() {
                   <DropdownMenuSubTrigger>Party</DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
 
-                    <DropdownMenuItem onSelect={handleNewParty}>New Party</DropdownMenuItem>
+                    <DropdownMenuItem>New Party</DropdownMenuItem>
                     <DropdownMenuItem>Parties List</DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -163,7 +146,7 @@ export default function DashboardComponent() {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
                 <DropdownMenuItem>Add Role</DropdownMenuItem>
-                <DropdownMenuItem onSelect={handleAddUser}>Add User</DropdownMenuItem>
+                <DropdownMenuItem>Add User</DropdownMenuItem>
                 <DropdownMenuItem>Change Password</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -174,14 +157,7 @@ export default function DashboardComponent() {
         </div>
       </header>
 
-      <main className="flex-grow container mx-auto p-4">
-        {showAddUserForm ? (
-          <AddUserForm onClose={() => setShowAddUserForm(false)} />
-        ) : showNewAgentForm ? (
-          <NewAgentForm onClose= {() => setShowNewAgentForm(false)} />
-        ) : showNewPartyForm ? (
-          <NewPartyForm />
-        ) :(
+
           <>
             <h1 className="text-3xl font-bold mb-4">Dashboard</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -226,8 +202,8 @@ export default function DashboardComponent() {
               </div>
             </div>
           </>
-        )}
-      </main>
+        
+      
 
       <footer className={`mt-auto p-4 ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-200'}`}>
         <div className="container mx-auto text-center">
